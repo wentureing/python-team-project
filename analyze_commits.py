@@ -9,16 +9,15 @@ output_dir.mkdir(exist_ok=True)
 
 commits = []
 
-# ================== 读取数据 ==================
+# 读取数据
 
 with open(file_path, "r", encoding="utf-8") as f:
-    header = f.readline()  # 跳过表头
+    header = f.readline() 
     for line in f:
         line = line.strip()
         if not line:
             continue
 
-        # 只分割前三个逗号
         parts = line.split(",", 3)
         if len(parts) < 4:
             continue
@@ -29,7 +28,7 @@ with open(file_path, "r", encoding="utf-8") as f:
             "message": parts[3].strip()
         })
 
-# ================== 1. 作者提交次数（Top 10） ==================
+# 作者提交次数（只记录前十名）
 
 author_counter = Counter(c["author"] for c in commits)
 top_authors = author_counter.most_common(10)
@@ -51,32 +50,70 @@ plt.tight_layout()
 plt.savefig(output_dir/"top_10_contributors.png", dpi=300)
 plt.close()
 
-# ================== 2. 提交类型分布 ==================
+# 提交类型分布
 
-merge_count = 0
-bump_count = 0
-fix_count = 0
-other_count = 0
+merge = dependency = bugfix = feature = 0
+refactor = docs = test = release = maintenance = other = 0
 
 for c in commits:
     msg = c["message"].lower()
-    if msg.startswith("merge pull request"):
-        merge_count += 1
-    elif msg.startswith("bump"):
-        bump_count += 1
-    elif "fix" in msg or "bug" in msg:
-        fix_count += 1
-    else:
-        other_count += 1
 
-types = ["Merge PR", "Dependency Bump", "Bug Fix", "Other"]
-type_counts = [merge_count, bump_count, fix_count, other_count]
+    if msg.startswith("merge pull request"):
+        merge += 1
+    elif "bump" in msg or "dependabot" in msg:
+        dependency += 1
+    elif "release" in msg or msg.startswith("v"):
+        release += 1
+    elif "fix" in msg or "bug" in msg or "error" in msg:
+        bugfix += 1
+    elif "add" in msg or "feature" in msg or "support" in msg or "implement" in msg:
+        feature += 1
+    elif "refactor" in msg or "cleanup" in msg or "restructure" in msg:
+        refactor += 1
+    elif "doc" in msg or "docs" in msg or "readme" in msg:
+        docs += 1
+    elif "test" in msg or "ci" in msg or "workflow" in msg:
+        test += 1
+    elif any(k in msg for k in [           # 将日常维护等计入此类
+    "update", "improve", "change", "adjust", "remove",
+    "minor", "tweak", "simplify", "optimize", "handle", "use"
+    ]):
+        maintenance += 1
+    else:
+        other += 1
+
+types = [
+    "Merge PR",
+    "Dependency",
+    "Release",
+    "Bug Fix",
+    "Feature",
+    "Refactor",
+    "Docs",
+    "Test",
+    "Maintenance",
+    "Other"
+]
+
+type_counts = [
+    merge,
+    dependency,
+    release,
+    bugfix,
+    feature,
+    refactor,
+    docs,
+    test,
+    maintenance,
+    other
+]
 
 plt.figure()
 bars = plt.bar(types, type_counts)
 plt.xlabel("Commit Type")
 plt.ylabel("Number of Commits")
-plt.title("Commit Type Distribution")
+plt.title("Fine-grained Commit Type Distribution")
+plt.xticks(rotation=30, ha="right")
 for bar, count in zip(bars, type_counts):
     height = bar.get_height()
     plt.text(bar.get_x() + bar.get_width()/2, height + 0.5,
@@ -85,12 +122,13 @@ plt.tight_layout()
 plt.savefig(output_dir/"commit_type.png", dpi=300)
 plt.close()
 
-# ================== 3. 按月份提交统计 ==================
+
+
+# 按月份提交统计
 
 yearly_counter = Counter()
 
 for c in commits:
-    # 提取年份 YYYY
     year = c["time"][:4]
     yearly_counter[year] += 1
 
