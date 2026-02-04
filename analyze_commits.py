@@ -27,7 +27,17 @@ with open(file_path, "r", encoding="utf-8") as f:
 
 # -------------------------- 封装可复用函数 --------------------------
 def plot_top_contributors(commits_data, title, save_name):
-    """绘制Top10贡献者柱状图"""
+    """
+    绘制Top10贡献者柱状图
+    
+    参数:
+        commits_data (list): 提交数据列表，每个元素是包含author、time、message的字典
+        title (str): 图表标题
+        save_name (str): 保存的文件名
+    
+    功能:
+        统计提交次数最多的10位作者，生成柱状图并保存到文件
+    """
     author_counter = Counter(c["author"] for c in commits_data)
     top_authors = author_counter.most_common(10)
     if not top_authors:  # 处理空数据
@@ -52,7 +62,18 @@ def plot_top_contributors(commits_data, title, save_name):
     plt.close()
 
 def analyze_commit_types(commits_data):
-    """分析提交类型并返回类型列表和对应数量"""
+    """
+    分析提交类型并返回类型列表和对应数量
+    
+    参数:
+        commits_data (list): 提交数据列表
+    
+    返回:
+        tuple: (类型列表, 类型数量列表)
+    
+    功能:
+        根据提交信息的关键词对提交进行自动分类，统计各类别的数量
+    """
     merge = dependency = bugfix = feature = 0
     refactor = docs = test = release = maintenance = other = 0
 
@@ -91,7 +112,17 @@ def analyze_commit_types(commits_data):
     return types, type_counts
 
 def plot_commit_types(commits_data, title, save_name):
-    """绘制提交类型分布柱状图"""
+    """
+    绘制提交类型分布柱状图
+    
+    参数:
+        commits_data (list): 提交数据列表
+        title (str): 图表标题
+        save_name (str): 保存的文件名
+    
+    功能:
+        可视化不同提交类型的分布情况，生成柱状图并保存
+    """
     types, type_counts = analyze_commit_types(commits_data)
     if sum(type_counts) == 0:  # 处理空数据
         print(f"警告：{title} 无数据可展示")
