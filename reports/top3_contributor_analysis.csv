@@ -1,0 +1,60 @@
+时间范围,贡献者,总提交数,提交类型,该类型提交数,占比(%)
+全时段,Kenneth Reitz,3113,Merge PR,1041,33.4
+全时段,Kenneth Reitz,3113,Other,1332,42.8
+全时段,Kenneth Reitz,3113,Docs,264,8.5
+全时段,Kenneth Reitz,3113,Maintenance,65,2.1
+全时段,Kenneth Reitz,3113,Dependency,17,0.5
+全时段,Kenneth Reitz,3113,Bug Fix,141,4.5
+全时段,Kenneth Reitz,3113,Feature,120,3.9
+全时段,Kenneth Reitz,3113,Test,95,3.1
+全时段,Kenneth Reitz,3113,Release,33,1.1
+全时段,Kenneth Reitz,3113,Refactor,5,0.2
+全时段,Cory Benfield,602,Merge PR,323,53.7
+全时段,Cory Benfield,602,Other,165,27.4
+全时段,Cory Benfield,602,Docs,29,4.8
+全时段,Cory Benfield,602,Bug Fix,27,4.5
+全时段,Cory Benfield,602,Feature,24,4.0
+全时段,Cory Benfield,602,Release,9,1.5
+全时段,Cory Benfield,602,Test,19,3.2
+全时段,Cory Benfield,602,Dependency,4,0.7
+全时段,Cory Benfield,602,Maintenance,2,0.3
+全时段,Ian Cordasco,309,Release,15,4.9
+全时段,Ian Cordasco,309,Merge PR,128,41.4
+全时段,Ian Cordasco,309,Docs,11,3.6
+全时段,Ian Cordasco,309,Bug Fix,47,15.2
+全时段,Ian Cordasco,309,Feature,22,7.1
+全时段,Ian Cordasco,309,Dependency,3,1.0
+全时段,Ian Cordasco,309,Other,70,22.7
+全时段,Ian Cordasco,309,Maintenance,2,0.6
+全时段,Ian Cordasco,309,Test,11,3.6
+近5年,Nate Prewitt,121,Merge PR,55,45.5
+近5年,Nate Prewitt,121,Other,31,25.6
+近5年,Nate Prewitt,121,Feature,11,9.1
+近5年,Nate Prewitt,121,Release,2,1.7
+近5年,Nate Prewitt,121,Test,6,5.0
+近5年,Nate Prewitt,121,Dependency,2,1.7
+近5年,Nate Prewitt,121,Bug Fix,9,7.4
+近5年,Nate Prewitt,121,Docs,3,2.5
+近5年,Nate Prewitt,121,Maintenance,2,1.7
+近5年,Ian Stapleton Cordasco,63,Release,3,4.8
+近5年,Ian Stapleton Cordasco,63,Docs,3,4.8
+近5年,Ian Stapleton Cordasco,63,Merge PR,46,73.0
+近5年,Ian Stapleton Cordasco,63,Test,2,3.2
+近5年,Ian Stapleton Cordasco,63,Feature,2,3.2
+近5年,Ian Stapleton Cordasco,63,Other,7,11.1
+近5年,dependabot[bot],31,Other,31,100.0
+近2年,Nate Prewitt,53,Merge PR,29,54.7
+近2年,Nate Prewitt,53,Other,14,26.4
+近2年,Nate Prewitt,53,Feature,2,3.8
+近2年,Nate Prewitt,53,Release,2,3.8
+近2年,Nate Prewitt,53,Test,3,5.7
+近2年,Nate Prewitt,53,Dependency,1,1.9
+近2年,Nate Prewitt,53,Bug Fix,1,1.9
+近2年,Nate Prewitt,53,Docs,1,1.9
+近2年,Ian Stapleton Cordasco,24,Release,3,12.5
+近2年,Ian Stapleton Cordasco,24,Docs,1,4.2
+近2年,Ian Stapleton Cordasco,24,Merge PR,16,66.7
+近2年,Ian Stapleton Cordasco,24,Test,1,4.2
+近2年,Ian Stapleton Cordasco,24,Feature,1,4.2
+近2年,Ian Stapleton Cordasco,24,Other,2,8.3
+近2年,dependabot[bot],18,Other,18,100.0
