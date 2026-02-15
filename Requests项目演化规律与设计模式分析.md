@@ -37,7 +37,7 @@ requests 是 Python 生态中主流的 HTTP 客户端库，其发展路径贴合
 
 #### 3.1 提交活跃度：三阶段演进，契合成熟开源项目生命周期
 
-![figure1](\analyze_commits_figures\yearly_commit.png)  
+![figure1](/analyze_commits_figures/yearly_commit.png)  
 
 基于年度提交量趋势分析，requests 提交活跃度呈现 “爆发期-优化期-稳定期” 三阶段特征：
 
