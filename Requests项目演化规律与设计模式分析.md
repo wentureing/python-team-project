@@ -49,16 +49,32 @@ requests 是 Python 生态中主流的 HTTP 客户端库，其发展路径贴合
 
 requests 贡献者生态呈现清晰的代际交接特征，逐步形成 “核心维护者 + 社区贡献 + 机器人自动化” 的协同模式。
 
+![figure1](/analyze_commits_figures/top_10_contributors.png)  
+
 - **全时段**：项目创始人 Kenneth Reitz 以 3148 次提交居贡献榜首位，提交量超第二名 Cory Benfield（ 610 次）的 5 倍，体现其在项目初期的主导作用，奠定了项目技术架构与功能基础；全时段贡献者群体多元，反映项目的开源吸引力。
+
+![figure1](/analyze_commits_figures/top_10_contributors_5years.png)  
+
 - **近五年（2021-2025）**：Kenneth Reitz 退出核心活跃行列，Nate Prewitt（121 次提交）成为核心维护者，Ian Stapleton Cordasco 紧随其后，项目转向 “社区维护”；机器人账号 dependabot[bot] 进入贡献榜前列，参与依赖更新等自动化维护。
+
+![figure1](/analyze_commits_figures/top_10_contributors_2years.png)  
+
 - **近两年（2024-2025）**：贡献者结构趋于稳定，Nate Prewitt（52 次提交）持续领跑，Ian Stapleton Cordasco 保持活跃，dependabot[bot] 稳居前三；核心维护者负责统筹与问题修复，机器人负责自动化维护，社区贡献者通过 PR 参与项目优化
 
 #### 3.3 提交类型：从开发导向到维护导向的全面转型
 
 不同时段提交类型分布的变化，直观反映项目从 “开发导向” 向 “维护导向” 的转型：
 
+![figure1](/analyze_commits_figures/commit_type.png)  
+
 - **全时段**：“Other”（1912 次）和 “Merge PR”（1246 次）占比超总量一半，“Other” 涵盖早期功能开发、代码重构、文档完善等，“Merge PR” 体现社区活跃度；“Bug Fix”“Feature” 也有一定占比，兼顾问题修复与功能迭代。
+
+![figure1](/analyze_commits_figures/commit_type_5years.png)  
+
 - **近五年（2021-2025）**：“Merge PR”（90 次）成为主要提交类型，“Bug Fix”（54 次）次之，“Feature” 提交量大幅减少；核心工作转向社区协作与问题修复，弱化新增功能开发。
+
+![figure1](/analyze_commits_figures/commit_type_2years.png)  
+
 - **近两年（2024-2025）**：“Merge PR”（43 次）和 “Dependency”（21 次）为核心类型，“Bug Fix” 提交量大幅回落，“Feature” 提交基本消失；“Dependency” 提交由 dependabot[bot] 完成（聚焦依赖更新），“Merge PR” 以合并社区小幅优化 / 修复 PR 为主，项目完全进入维护阶段。
 
 #### 3.4 核心分析小结
@@ -99,7 +115,7 @@ requests 贡献者生态呈现清晰的代际交接特征，逐步形成 “核�
 
 ## 第二部分：Requests库软件工程分析
 
-### 1. 需求分析（核心用例与解决的问题）
+### 1. 需求分析
 
 #### 主要用例场景
 
@@ -130,7 +146,7 @@ response = requests.post('https://api.example.com/upload',
 - 参数序列化（表单/JSON自动转换）
 - 文件上传简化
 
-##### **用例3：会话管理（保持状态）**
+##### **用例3：会话管理**
 ```python
 # 用户需求：在多个请求间保持Cookie和Session
 with requests.Session() as s:
@@ -160,10 +176,9 @@ session.mount('https://', adapter)
 **解决的问题**：
 - 网络波动容错（连接超时、DNS失败等）
 - 连接超时重试（可配置重试策略）
-- 优雅降级（部分失败不影响整体）
 - 统一的异常体系
 
-### 2. 设计分析（设计模式与架构）
+### 2. 设计分析
 
 #### **整体架构模式**
 ```
@@ -342,7 +357,7 @@ class HTTPAdapter:
         return conn  # 返回共享连接对象
 ```
 
-### 3. 具体实现分析（用例解决流程）
+### 3. 具体实现分析
 
 #### **用例1解决流程：简单GET请求**
 
@@ -663,8 +678,6 @@ Requests 库通过精心组合多种设计模式，实现了简单易用与强�
 - **享元+会话**：连接池复用资源，会话管理保持状态
 - **混入+观察者**：功能灵活组合，钩子系统支持扩展
 
-#### **工程价值**
-Requests 库不仅是Python HTTP客户端的标准，更是优秀软件设计的典范。其设计模式的应用展示了如何将复杂系统分解为可维护、可扩展的组件，同时保持API的简洁性和易用性。这种设计思想值得在构建类似复杂系统时借鉴。
 
 ### 5. 测试验证
 
